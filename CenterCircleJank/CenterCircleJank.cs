@@ -23,18 +23,25 @@ namespace CenterCircleJank
         class CenterCircleJankPatch
         {
             [HarmonyPostfix]
-            [HarmonyPatch("OnAttach")]
-            public static void Postfix(SyncRef<OutlinedArc> ____innerCircle)
+            [HarmonyPatch("OnAwake")]
+            public static void Postfix(ContextMenu __instance, 
+                                       SyncRef<OutlinedArc> ____innerCircle)
             {
-                ____innerCircle.Target.Arc.Value = 90f;
-                ____innerCircle.Target.InnerRadiusRatio.Value = -5f;
-                Slot tempSlot = ____innerCircle.Target.Slot.AddSlot("Visual");
-                tempSlot.OrderOffset = -1;
-                OutlinedArc tempOutlinedArc = tempSlot.AttachComponent<OutlinedArc>(true, null);
+                __instance.RunInUpdates(3, () =>
+                {
+                    if (__instance.Slot.ActiveUserRoot.ActiveUser != __instance.LocalUser)
+                        return;
 
-                tempOutlinedArc.FillColor.Value = new colorX(0, 0, 0, 0);
-                tempOutlinedArc.OutlineColor.Value = new colorX(0, 0, 0, 0);
-                tempOutlinedArc.InnerRadiusRatio.Value = 0f;
+                    ____innerCircle.Target.Arc.Value = 90f;
+                    ____innerCircle.Target.InnerRadiusRatio.Value = -5f;
+                    Slot tempSlot = ____innerCircle.Target.Slot.AddSlot("Visual");
+                    tempSlot.OrderOffset = -1;
+                    OutlinedArc tempOutlinedArc = tempSlot.AttachComponent<OutlinedArc>(true, null);
+
+                    tempOutlinedArc.FillColor.Value = new colorX(0, 0, 0, 0);
+                    tempOutlinedArc.OutlineColor.Value = new colorX(0, 0, 0, 0);
+                    tempOutlinedArc.InnerRadiusRatio.Value = 0f;
+                });
             }
         }
     }
