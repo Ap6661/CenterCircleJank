@@ -1,7 +1,8 @@
 # CenterCircleJank
-# THIS MOD IS A HACK AND WILL BREAK
-However the changes that would break this would fix this issue.
 A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that fixes the line and dot you see in the center circle of the context menu.
+### THIS MOD IS A HACK AND WILL BREAK
+However the changes that would break this would fix this issue.
+
 
 ## Installation
 1. Install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader).
